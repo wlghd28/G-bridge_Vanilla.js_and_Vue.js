@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <button>컴포넌트 등록</button>
+        <my-component></my-component>
+        <sibling-component v-bind:propsdata="anotherMessage"></sibling-component>  
+        <sibling-component v-bind:propsdata="message"></sibling-component>     
+    </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script>
+            Vue.component('my-component', {
+                template : '<div><b>전역컴포넌트가 등록되었습니다.</b></div>'
+            });
+            Vue.component('sibling-component', {
+                props : ['propsdata'],
+                template : '<div><b>전역컴포넌트가 {{propsdata}} 등록되었습니다.</b></div>'
+            });
+            new Vue({
+                el : "#app",
+                data: {
+                    message: 'Hello Vue! passed from Parent Component',
+                    anotherMessage: 'This is AnotherMessage!'
+                }
+            });
+        </script>
+    </body>
+</html>

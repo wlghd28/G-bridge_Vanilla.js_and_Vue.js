@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>지역 컴포넌트와 로컬의 차이2</title>
+</head>
+<body>
+    <div id="app">
+        <h3>첫 번째 인스턴스 영역</h3>
+        <my-local-component></my-local-component>
+        <my-global-component></my-global-component>       
+    </div>
+    <div id="app2">
+        <h3>두 번째 인스턴스 영역</h3>
+        <my-local-component></my-local-component>
+        <my-global-component></my-global-component>       
+    </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script>
+            //글로벌 컴포넌트
+            Vue.component('my-global-component', {
+                template : '<div>글로벌 컴포넌트가 등록 됐어요</div>'
+            });
+            var cmp = {
+                // 지역컴포넌트 내용
+                template : '<div>지역 컴포넌트가 등록 됐어요</div>'
+            }
+            // 5-2의 예제를 통해서, 전역-지역 컴포넌트간 차이를 명확히 볼 수 있음
+            // 인스턴스의 수가 두 개 이상이면 전역 컴포넌트만 어느 인스턴스이던 상관이 없음
+            new Vue({
+                el : "#app",
+                components : {
+                    'my-local-component' : cmp
+                }
+            });
+            new Vue({
+                el : '#app2',
+                components : {
+
+                }
+            });
+        </script>
+    </body>
+</html>
